@@ -1,0 +1,56 @@
+<html>
+	<head>
+			<title> UflaView </title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+		<script src="js/three.min.js"></script>
+		<script src ="js/trackball.js"></script>
+	</head>
+	<body onload = "Onload();">
+		<div id ='container'>
+			<script>
+				function Onload() {
+					initScene();
+				}
+				function initScene() {
+					var container = document.getElementById("container");
+					var scene = new THREE.Scene();
+					var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+					scene.add(camera);
+					var renderer = new THREE.WebGLRenderer();
+					renderer.setSize( window.innerWidth, window.innerHeight );
+					container.appendChild( renderer.domElement );
+					var geometry = new THREE.BoxGeometry( 50, 50, 1 );
+					var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+					var plano = new THREE.Mesh(geometry,material);
+					scene.add(plano);
+					camera.position.z = 50;
+					var controls = new THREE.TrackballControls(camera, renderer.domElement);
+					controls.rotateSpeed = 1.0;
+					controls.ZoomSpeed = 1.2;
+					controls.panSpeed = 0.8;
+					controls.noZoom = false;
+					controls.noPan = false;
+					controls.staticMoving = true;
+					controls.dynamicDampingFactor = 0.3;
+					controls.keys = [65, 83, 68];
+					controls.domElement.addEventListener( 'change', render );
+					function animate() {
+						requestAnimationFrame(animate);
+						render();
+					}
+					function render() {
+						controls.update(); 
+						renderer.render( scene, camera);         
+
+					}
+					animate();
+
+				}
+
+			</script>
+		</div>
+	</body>	
+</html>
