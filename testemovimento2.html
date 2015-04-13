@@ -169,7 +169,8 @@
 				if ( SELECTED ) {
 
 					var intersects = raycaster.intersectObject( plane );
-					SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+					//SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+					SELECTED.position.x = intersects [ 0 ].point.x;
 					return;
 
 				}
@@ -185,8 +186,7 @@
 						INTERSECTED = intersects[ 0 ].object;
 						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 
-						//plane.position.copy( INTERSECTED.position );
-						plane.position.x = INTERSECTED.position.x;
+						plane.position.copy( INTERSECTED.position );
 						plane.lookAt( camera.position );
 
 					}
@@ -222,8 +222,7 @@
 					SELECTED = intersects[ 0 ].object;
 
 					var intersects = raycaster.intersectObject( plane );
-					//offset.copy( intersects[ 0 ].point ).sub( plane.position );
-					offset = intersects[ 0 ].point.sub( plane.position );
+					offset.copy( intersects[ 0 ].point ).sub( plane.position );
 					container.style.cursor = 'move';
 
 				}
@@ -238,8 +237,7 @@
 
 				if ( INTERSECTED ) {
 
-					//plane.position.copy( INTERSECTED.position.x );
-					plane.position.x = INTERSECTED.position.x;
+					plane.position.copy( INTERSECTED.position.x );
 
 					SELECTED = null;
 
