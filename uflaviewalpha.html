@@ -154,6 +154,17 @@
 					objects.push( mesh );
 				});
 
+				loader = new THREE.JSONLoader();
+				loader.load( "mods/09.compcult.js", function( geometry ) {
+					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
+					mesh = new THREE.Mesh( geometry, material );
+					mesh.position.set( 2910.83 , 16 , -970.20 );
+					mesh.rotation.y = 90 * Math.PI / 180;
+					mesh.scale.set(1, 1, 1);
+					scene.add( mesh );
+					objects.push( mesh );
+				});
+
 
 				//Cria o plano de fundo na cor preta e adiciona a cena.
 				plane = new THREE.Mesh(
