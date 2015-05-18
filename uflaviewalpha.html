@@ -165,6 +165,28 @@
 					objects.push( mesh );
 				});
 
+				loader = new THREE.JSONLoader();
+				loader.load( "mods/10.CEAD.js", function( geometry ) {
+					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
+					mesh = new THREE.Mesh( geometry, material );
+					mesh.position.set( 2987.10 , 3 , -890.54 );
+					mesh.rotation.y = 110 * Math.PI / 180;
+					mesh.scale.set(4.5, 4.5, 4.5);
+					scene.add( mesh );
+					objects.push( mesh );
+				});
+
+				loader = new THREE.JSONLoader();
+				loader.load( "mods/12.Laboratorio.js", function( geometry ) {
+					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
+					mesh = new THREE.Mesh( geometry, material );
+					mesh.position.set( 2977.65 , 2.5 , -800.09 );
+					mesh.rotation.y = 90 * Math.PI / 180;
+					mesh.scale.set(4.5, 4.5, 4.5);
+					scene.add( mesh );
+					objects.push( mesh );
+				});
+
 
 				//Cria o plano de fundo na cor preta e adiciona a cena.
 				plane = new THREE.Mesh(
