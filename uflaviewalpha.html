@@ -177,15 +177,48 @@
 				});
 
 				loader = new THREE.JSONLoader();
-				loader.load( "mods/12.Laboratorio.js", function( geometry ) {
+					loader.load( "mods/12.Laboratorio.js", function( geometry ) {
 					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
 					mesh = new THREE.Mesh( geometry, material );
-					mesh.position.set( 2977.65 , 2.5 , -800.09 );
+					mesh.position.set( 2993.62 , 2.5 , -803.64 );
 					mesh.rotation.y = 90 * Math.PI / 180;
+					mesh.scale.set(3, 4.5, 2);
+					scene.add( mesh );
+					objects.push( mesh );
+				});
+
+				loader = new THREE.JSONLoader();
+					loader.load( "mods/13.TVU.js", function( geometry ) {
+					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
+					mesh = new THREE.Mesh( geometry, material );
+					mesh.position.set( 2983.56 , 2 , -770.68 );
+					//mesh.rotation.y = 90 * Math.PI / 180;
+					mesh.scale.set(3, 4, 2);
+					scene.add( mesh );
+					objects.push( mesh );
+				});
+
+				loader = new THREE.JSONLoader();
+				loader.load( "mods/15.NEC.js", function( geometry ) {
+					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
+					mesh = new THREE.Mesh( geometry, material );
+					mesh.position.set( 3224.88 , 3.5 , -916.18 );
+					mesh.rotation.y = -90 * Math.PI / 180;
 					mesh.scale.set(4.5, 4.5, 4.5);
 					scene.add( mesh );
 					objects.push( mesh );
 				});
+
+				loader.load( "mods/17.grafica.js", function( geometry ) {
+					var material = new THREE.MeshPhongMaterial( { color:0xacdfe3 } );
+					mesh = new THREE.Mesh( geometry, material );
+					mesh.position.set( 3098.50 , 0 , -796.46 );
+					mesh.rotation.y = -90 * Math.PI / 180;
+					mesh.scale.set(3, 4.5, 5);
+					scene.add( mesh );
+					objects.push( mesh );
+				});
+
 
 
 				//Cria o plano de fundo na cor preta e adiciona a cena.
