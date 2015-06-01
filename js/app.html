@@ -14,13 +14,13 @@
         </style>
     </head>
     <body>
-        <script src="three.min.js"></script>
-        <script src="CanvasRenderer.js"></script>
-        <script src="Projector.js"></script>
-        <script src="OrbitControls.js"></script>
-        <script src="EditorControls.js"></script>
-        <script src="TransformControls.js"></script>
-        <script src="JSONLoader.js"></script>
+        <script src="three.js/three.min.js"></script>
+        <script src="three.js/CanvasRenderer.js"></script>
+        <script src="three.js/Projector.js"></script>
+        <script src="three.js/OrbitControls.js"></script>
+        <script src="three.js/EditorControls.js"></script>
+        <script src="three.js/TransformControls.js"></script>
+        <script src="three.js/JSONLoader.js"></script>
 
         <script>
             var scene, camera, renderer, axes, controls;
@@ -66,7 +66,7 @@
 
             var loader = new THREE.JSONLoader();
 
-            loader.load( '../models/json/test.js', function ( geometry, material) {
+            loader.load( '../modelos/test.js', function ( geometry, material) {
                 var material = new THREE.MeshLambertMaterial( { color: 0x505050 } );
                 var object = new THREE.Mesh( geometry, material );
 		console.log( geometry.vertices[ 0 ] );
@@ -128,11 +128,12 @@
             
             function animate() {
 
-		 if( rotate ) cubeRotate( cubes );
+		//if( rotate ) cubeRotate( cubes );
 
-                requestAnimationFrame( animate );
+                //requestAnimationFrame( animate );
                 renderer.render( scene,camera );
 
+                editor.update();
                 controls.update();
             }
 
@@ -164,7 +165,7 @@
                         break;
                     case 77:
                         console.log( cubes.children[ 0 ] );
-                        editor.enabled ? editor.enabled = false : editor.enabled = true;
+                        //editor.enabled == true ? editor.enabled = false : editor.enabled = true;
 			saveGeometryToJSON( cubes.children[ 0 ].clone().geometry);
                         break;
                 }
