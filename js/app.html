@@ -43,7 +43,7 @@
 
             camera.rotation.x = -0.5;
 
-            var editor = new THREE.EditorControls( camera, renderer.domElement );
+            //var editor = new THREE.EditorControls( camera, renderer.domElement );
 
             controls = new THREE.TransformControls( camera, renderer.domElement );
             controls.addEventListener( 'change', animate );
@@ -133,8 +133,6 @@
                 //requestAnimationFrame( animate );
                 renderer.render( scene,camera );
 
-                editor.update();
-                controls.update();
             }
 
             animate();
