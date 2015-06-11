@@ -28,6 +28,7 @@
 	    var objects = [];
 
             // Set up renderer, scene and camera
+
             renderer = new THREE.WebGLRenderer( { antialias: true } );
             renderer.setSize( window.innerWidth, window.innerHeight );
             renderer.setClearColor( 0xeeeedd );
@@ -37,32 +38,36 @@
 
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
+            camera.position.x = 0;
+            camera.position.y = 0;
             camera.position.z = 30;
+<<<<<<< HEAD
+=======
             camera.position.x = 2;
             camera.position.y = 5;
 
             camera.rotation.x = -0.5;
 
             //var editor = new THREE.EditorControls( camera, renderer.domElement );
+>>>>>>> 04cbe8c62213d34232049575639466410a9a6616
 
             controls = new THREE.TransformControls( camera, renderer.domElement );
             controls.addEventListener( 'change', animate );
             scene.add( controls );
 
-
-	    // Projection
-
-            var projector = new THREE.Projector();
-            mouseVector = new THREE.Vector3();
-
-            window.addEventListener( 'mousedown', onMouseDown, false );
-
-            var mouse = new THREE.Vector2();
-            var raycaster = new THREE.Raycaster();
-            var objects = [];
-
-
             // Objects
+
+            var material = new THREE.LineBasicMaterial( {
+                color: 0x0000ff
+            } );
+
+            var c = 20;
+
+            var geom = new THREE.SphereGeometry( 5, 16, 16 );
+            var mat = new THREE.MeshBasicMaterial( {
+                color: 0x0000ff,
+                wireframe: true
+            } );
 
             var loader = new THREE.JSONLoader();
 
@@ -70,7 +75,7 @@
                 var material = new THREE.MeshLambertMaterial( { color: 0x505050 } );
                 var object = new THREE.Mesh( geometry, material );
 		console.log( geometry.vertices[ 0 ] );
-                scene.add( object );
+                //scene.add( object );
             } );
 
             var geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -94,29 +99,8 @@
             controls.attach( cubes.children[ 0 ] );
 	    scene.add( cubes );
 
-
-            // Some fancy animations
-            var time = 0;
-
-	    function cubeRotate ( cubes ) {
-
-		for ( var i = 0; i < cubes.children.length; i++ ) {
-		
-		    time += 0.002;
-
-		    var cube = cubes.children[ i ];
-		    // Rotations
-		    cube.rotation.x = i + time; 
-                    cube.rotation.y = i + time;
-    
-		    // Positions
-		    cube.position.x = Math.sin( i * 4 + time ) * 5;
-		    cube.position.y = Math.cos( i * 2 + time ) * 5;
-		    cube.position.z = Math.sin( i * 3 + time ) * 5;
-		}	
-	    }
-
             // Lights
+
             var dirLight = new THREE.DirectionalLight( 0xffffff, 0.7 );
             dirLight.position.set( 0, 1, 0 );
             scene.add( dirLight );
@@ -128,11 +112,12 @@
             
             function animate() {
 
-		//if( rotate ) cubeRotate( cubes );
-
                 //requestAnimationFrame( animate );
                 renderer.render( scene,camera );
+<<<<<<< HEAD
+=======
 
+>>>>>>> 04cbe8c62213d34232049575639466410a9a6616
             }
 
             animate();
@@ -145,7 +130,7 @@
                     case 81:
                           controls.setSpace( controls.space == "local" ? "world" : "local" );
                           break;
-                    case 87:
+                    case 71:
                           controls.setMode( "translate" );
                           break;
                     case 82:
@@ -164,7 +149,6 @@
                     case 77:
                         console.log( cubes.children[ 0 ] );
                         //editor.enabled == true ? editor.enabled = false : editor.enabled = true;
-			saveGeometryToJSON( cubes.children[ 0 ].clone().geometry);
                         break;
                 }
             } );
@@ -179,67 +163,7 @@
                 renderer.setSize( window.innerWidth, window.innerHeight );
 
             }
-
-            function onMouseDown( e ) {
-                mouse.x = (e.clientX / renderer.domElement.width ) * 2 - 1;
-                mouse.y = - (e.clientY / renderer.domElement.height ) * 2 + 1;
-                
-                raycaster.setFromCamera( mouse, camera );
-
-                var intersects = raycaster.intersectObjects( objects );
-
-		if( intersects.length > 0 ) {
-			rotate ? rotate = false : rotate = true;
-			//var intersect = intersects[ 0 ];
-			//intersect.object.material.color.setHex( Math.random() * 0xffffff );
-                } 
-            }
             
-		function saveGeometryToJSON(geometry) {
-	    var i,
-		json = {
-		    metadata: { 
-			formatVersion: 3
-		    },
-		    scale: 1.000000,
-		    materials: [],
-		    vertices: [],
-		    morphTargets: [],
-		    morphColors: [],
-		    normals: [],
-		    colors: [],
-		    uvs: [[]],                  
-		    faces: []
-		};
-
-	    for (i = 0; i < geometry.vertices.length; i++) {
-		json.vertices.push(geometry.vertices[i].position.x);
-		json.vertices.push(geometry.vertices[i].position.y);
-		json.vertices.push(geometry.vertices[i].position.z);
-	    }
-
-	    for (i = 0; i < geometry.faces.length; i++) {
-		if (geometry.faces[i].d) {
-		    json.faces.push(1);
-		} else {
-		    json.faces.push(0);                 
-		}
-
-		json.faces.push(geometry.faces[i].a);
-		json.faces.push(geometry.faces[i].b);
-		json.faces.push(geometry.faces[i].c);
-
-		if (geometry.faces[i].d) {
-		    json.faces.push(geometry.faces[i].d);
-		}
-
-		json.normals.push(geometry.faces[i].normal.x);
-		json.normals.push(geometry.faces[i].normal.y);
-		json.normals.push(geometry.faces[i].normal.z);
-	    }
-
-	    return JSON.stringify(json, null, '<br>');
-	}
         </script>
     </body>
 </html>
