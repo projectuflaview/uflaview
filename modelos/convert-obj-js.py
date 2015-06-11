@@ -9,7 +9,7 @@ import os
 def main():
     ''' Função principal do código, le o comando, separa o caminho e chama
         outras funções. '''
-    #Le o comando
+    #Le o comando / Exemplo, obj/*.obj
     s = raw_input("Digite o comando: ")
 
     #Separa o Caminho
