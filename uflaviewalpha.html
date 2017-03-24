@@ -354,7 +354,7 @@
 
 			function fload(item, index) {
 				l = new THREE.JSONLoader();
-				l.load( "json" + item + ".js", function( geometry ) {
+				l.load( "json/" + item + ".js", function( geometry ) {
 					var material = new THREE.MeshPhongMaterial( { color:0xCBCBCB } );
 					var obj = new THREE.Mesh( geometry, material );
 					obj.geometry.computeBoundingBox();
